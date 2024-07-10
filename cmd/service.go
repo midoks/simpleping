@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	// "fmt"
+	"fmt"
 	"time"
 	"runtime"
 	"sync"
@@ -77,8 +77,17 @@ func deleteExpiredPing(){
 func ServiceRun(c *cli.Context) error {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	conf.InitConf()
-	db.InitDb()
+	err := conf.InitConf()
+	if err !=nil{
+		fmt.Println(err)
+		return err
+	}
+
+	err = db.InitDb()
+	if err !=nil{
+		fmt.Println(err)
+		return err
+	}
 
 	deleteExpiredPing()
 

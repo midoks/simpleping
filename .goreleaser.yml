@@ -17,8 +17,7 @@ before:
 builds:
   - env:
       - CGO_ENABLED=1
-      - GO111MODULE=on
-      - CC=x86_64-linux-musl-gcc
+      - CC=aarch64-linux-musl-gcc
     goos:
       - linux
       - darwin
@@ -40,7 +39,7 @@ release:
   # Default is extracted from the origin remote URL.
   github:
     owner: midoks
-    name: vez
+    name: simpleping
 
   # If set to true, will not auto-publish the release.
   # Default is false.
