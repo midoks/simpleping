@@ -1,0 +1,22 @@
+title: simpleping
+frequency: 1
+dirfilter:
+- tmp
+- .git
+- public
+- scripts
+- vendor
+- logs
+- templates
+ext:
+- go
+enablerun: true
+action:
+  before:
+  - ps -ef|grep 'simpleping service'| grep -v grep | awk '{print $2}' | xargs kill -9
+  after:
+  - ./simpleping service &
+  # - ./simpleping ping -ip 127.0.0.1
+  exit:
+  - ps -ef|grep 'simpleping service'| grep -v grep | awk '{print $2}' | xargs kill -9
+link: https://github.com/midoks/zzz
