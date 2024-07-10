@@ -67,27 +67,24 @@ build_app(){
 
 	if [ $1 == "linux" ]; then
 		export CGO_LDFLAGS="-static"
-		echo "go build -v -ldflags '${LDFLAGS}' main.go -o ${PACK_NAME}"
+		echo "go build -o ${PACK_NAME} -v -ldflags '${LDFLAGS}' main.go "
 		cd $rootPath && go build -v -ldflags "${LDFLAGS}" -o ${PACK_NAME} main.go
 		cp $rootPath/${PACK_NAME} $rootPath/tmp/build
 	fi
 
-	# cp -rf $rootPath/scripts $rootPath/tmp/build
 	# cp -rf $rootPath/conf $rootPath/tmp/build
+	cp -rf $rootPath/scripts $rootPath/tmp/build
 	cp -rf $rootPath/LICENSE $rootPath/tmp/build
 	cp -rf $rootPath/README.md $rootPath/tmp/build
 
 	cd $rootPath/tmp/build && xattr -c * && rm -rf ./*/.DS_Store && rm -rf ./*/*/.DS_Store
-	cd $rootPath/tmp/build && rm -rf ./conf/app.conf && rm -rf ./conf/locale
-
 	cd $rootPath/tmp/build && tar -zcvf $rootPath/tmp/package/${PACK_NAME}_${VERSION}_$1_$2.tar.gz ./
 }
 
 golist=`go tool dist list`
 echo $golist
 
-build_app linux amd64
-# build_app linux arm64
+# build_app linux amd64
+build_app linux arm64
 # build_app darwin amd64
 # build_app darwin arm64
-
