@@ -9,8 +9,8 @@ type Ping struct {
 	Id       int64  `gorm:"primaryKey"`
 	Ip       string `gorm:"index:,size:50;comment:IP"`
 	Speed    int64 `gorm:"index:,comment:速度"`
-	Created     time.Time `gorm:"autoCreateTime;comment:创建时间"`
-	CreatedUnix int64     `gorm:"autoCreateTime;comment:创建时间"`
+	Created     time.Time `gorm:"autoCreateTime;index:,comment:创建时间"`
+	CreatedUnix int64     `gorm:"autoCreateTime;index:,;comment:创建时间"`
 }
 
 func (Ping) TableName() string {
