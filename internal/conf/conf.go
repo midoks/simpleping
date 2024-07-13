@@ -44,6 +44,7 @@ func makeConf(default_cfg string){
 	cfg.Section("ping_mysql_slave").Key("off").SetValue("0")
 	cfg.Section("ping_mysql_slave").Key("timeout").SetValue("1")
 	cfg.Section("ping_mysql_slave").Key("ip").SetValue("127.0.0.1")
+	cfg.Section("ping_mysql_slave").Key("port").SetValue("3306")
 	cfg.Section("ping_mysql_slave").Key("user").SetValue("root")
 	cfg.Section("ping_mysql_slave").Key("pass").SetValue("root")
 	cfg.Section("ping_mysql_slave").Key("day").SetValue("7")
@@ -85,6 +86,13 @@ func InitConf() error {
 	// ***************************
 	if err = File.Section("ping").MapTo(&Ping); err != nil {
 		return errors.Wrap(err, "mapping [ping] section")
+	}
+
+	// ***************************
+	// ----- MySQLPing settings -----
+	// ***************************
+	if err = File.Section("ping_mysql_slave").MapTo(&MySQLPing); err != nil {
+		return errors.Wrap(err, "mapping [ping_mysql_slave] section")
 	}
 
 	return nil

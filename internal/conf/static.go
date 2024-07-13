@@ -22,6 +22,16 @@ var (
 		Ip       string
 		Day      int64
 	}
+
+	MySQLPing struct {
+		Off  int64
+		Timeout  int64
+		Ip       string
+		Port     int
+		User     string
+		Pass     string
+		Day      int64
+	}
 )
 
 type DatabaseOpts struct {

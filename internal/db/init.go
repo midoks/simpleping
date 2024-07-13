@@ -23,7 +23,7 @@ var (
     err error
 )
 
-var Tables = []interface{}{ new(Ping) }
+var Tables = []interface{}{ new(Ping), new(MySQLPing) }
 
 func InitDb() error {
 
