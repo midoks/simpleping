@@ -41,6 +41,13 @@ func makeConf(default_cfg string){
 	cfg.Section("ping").Key("ip").SetValue("127.0.0.1")
 	cfg.Section("ping").Key("day").SetValue("7")
 
+	cfg.Section("ping_mysql_slave").Key("off").SetValue("0")
+	cfg.Section("ping_mysql_slave").Key("timeout").SetValue("1")
+	cfg.Section("ping_mysql_slave").Key("ip").SetValue("127.0.0.1")
+	cfg.Section("ping_mysql_slave").Key("user").SetValue("root")
+	cfg.Section("ping_mysql_slave").Key("pass").SetValue("root")
+	cfg.Section("ping_mysql_slave").Key("day").SetValue("7")
+
 	os.MkdirAll(filepath.Dir(default_cfg), os.ModePerm)
 	if err := cfg.SaveTo(default_cfg); err != nil {
 		return
