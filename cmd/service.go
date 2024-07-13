@@ -91,16 +91,14 @@ func pingMySQLIp(ip string, port int, user string, pass string, wg *sync.WaitGro
   			replica := map[string]interface{}{}
   			mydb.Raw("SHOW REPLICA STATUS").Scan(&replica)
   			sbm := replica["Seconds_Behind_Master"].(uint64)
-  			// sbm_int, _ := strconv.ParseInt(sbm,10,64)
-  			// fmt.Println("sbm_int",sbm,sbm_int)
-  			db.AddMySQLData(ip, int64(sbm))
+  			sbm_str := strconv.FormatInt(int64(sbm), 10)
+  			db.AddMySQLData(ip, sbm_str)
   		} else{
   			slave := map[string]interface{}{}
   			mydb.Raw("SHOW SLAVE STATUS").Scan(&slave)
   			sbm := slave["Seconds_Behind_Master"].(uint64)
-  			// sbm_int, _ := strconv.ParseInt(sbm,10,64)
-  			// fmt.Println("sbm_int",sbm)
-  			db.AddMySQLData(ip, int64(sbm))
+  			sbm_str := strconv.FormatInt(int64(sbm), 10)
+  			db.AddMySQLData(ip, sbm_str)
   		}
   	}
 
