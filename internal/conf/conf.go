@@ -41,7 +41,7 @@ func makeConf(default_cfg string){
 	cfg.Section("ping").Key("ip").SetValue("127.0.0.1")
 	cfg.Section("ping").Key("day").SetValue("7")
 
-	cfg.Section("ping_mysql_slave").Key("off").SetValue("0")
+	cfg.Section("ping_mysql_slave").Key("off").SetValue("1")
 	cfg.Section("ping_mysql_slave").Key("timeout").SetValue("1")
 	cfg.Section("ping_mysql_slave").Key("ip").SetValue("127.0.0.1")
 	cfg.Section("ping_mysql_slave").Key("port").SetValue("3306")

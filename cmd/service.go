@@ -117,9 +117,9 @@ func autoMySQLPingIpRun(){
 	pass := conf.MySQLPing.Pass
 	off := conf.MySQLPing.Off
 
-	if off == 1 {
+	if off == 0 {
 		for{
-			fmt.Println("run:",ip, port, user, pass)
+			// fmt.Println("run:",ip, port, user, pass)
 			wg.Add(1)
 			go pingMySQLIp(ip, port, user, pass, &wg)
 			wg.Wait()

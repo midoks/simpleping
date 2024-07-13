@@ -15,8 +15,6 @@ var (
 		DataPath  string
 	}
 
-
-
 	Ping struct {
 		Timeout  int64
 		Ip       string
